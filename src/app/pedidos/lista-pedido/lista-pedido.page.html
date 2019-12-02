@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Minhas consultas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>Exibir histórico</ion-label>
+      <ion-checkbox color="dark" slot="end" (ionChange)="executarBusca($event)"></ion-checkbox>
+    </ion-item>
+    <ion-item *ngFor="let pedido of pedidos | async" [routerLink]="['/pedido/produtos', pedido.key]">
+      <ion-label>
+        <h1>Sessão {{ pedido.numero }}</h1>
+
+        <div margin-vertical>
+          <div><b>Valor à pagar: <br> </b> <app-valor [valor]="pedido.total" ></app-valor></div>
+          <div>
+            <b>{{ getFormaPagamentoNome(pedido.formPagamento) }}: </b>
+            <!-- <span *ngIf="pedido.formPagamento == 1">Troco para: {{ pedido.trocoPara || 0 | currency:'BRL' }}</span> -->
+            <span text-wrap *ngIf="pedido.formPagamento == 2"> <br> {{ pedido.tipoCartao }}</span>
+          </div>
+          <div>
+            <b>Data da solicitação: <br></b> {{ pedido.data }}
+          </div>
+          <div>
+            <b>Status: <br> {{ getStatusNome(pedido.status) }}</b>
+          </div>
+        </div>
+      </ion-label>
+    </ion-item>
+    
+  </ion-list>
+</ion-content>

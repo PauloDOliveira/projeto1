@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes da sessão</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>{{ produto.nome }}</h1>
+  <pre text-wrap>{{ produto.descricao }}</pre>
+  <!-- <app-valor [valor]="produto.preco"></app-valor> -->
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<!-- 
+    <ion-item>
+      <ion-label position="stacked">Quantidade</ion-label>
+      <ion-input type="number" min="0" step="1" formControlName="quantidade" (ionChange)="executaCalcularTotal()"></ion-input>
+    </ion-item> -->
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <!-- <ion-button expand="block" color="primary" (click)="adicionarQuantidade()">
+              <ion-icon name="add"></ion-icon>
+            </ion-button> -->
+          </ion-col>
+          <ion-col>
+            <!-- <ion-button expand="block" color="primary" (click)="removerQuantidade()">
+              <ion-icon name="remove"></ion-icon>
+            </ion-button> -->
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+      
+    <ion-item>
+      <ion-label position="stacked">Qual o seu problema, dores, ou objetivo com a sessão:</ion-label>
+      <ion-textarea formControlName="observacao"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Data</ion-label> 
+      <ion-datetime display-format="DD/MM/YYYY" min="2019" max="2020" formControlName="data"></ion-datetime>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Horário</ion-label>
+      <ion-datetime display-format="HH:mm"  minute-values="0" formControlName="hora"></ion-datetime>
+    </ion-item>
+
+    <ion-item text-end>
+      <ion-label>
+        <h2>Valor: <app-valor [valor]="total"></app-valor></h2>
+      </ion-label>
+    </ion-item>
+
+    <div margin-vertical>
+      <ion-button expand="block" type="submit">Agendar</ion-button>
+    </div>
+  </form>
+</ion-content>

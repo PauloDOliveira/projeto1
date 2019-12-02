@@ -1,5 +1,7 @@
 {
-  "name": "projeto1",
-  "integrations": {},
+  "name": "apptab",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

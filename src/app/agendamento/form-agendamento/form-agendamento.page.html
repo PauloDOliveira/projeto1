@@ -1,0 +1,35 @@
+<ion-header>
+    <!-- <ion-header>
+        <ion-toolbar color="primary">
+          <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+          </ion-buttons>
+          <ion-title>Detalhes da sessão</ion-title>
+        </ion-toolbar>
+      </ion-header> -->
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+    <ion-title>Agende seu serviço</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding> 
+  <br>Escola o horario de sua preferencia. 
+  <br><br><br> OBS: Não trabalhamos fim de semana e feriado
+
+  <h1></h1>
+
+  <ion-item>
+    <ion-label>Start Time</ion-label>
+    <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>
+  </ion-item>
+
+
+
+
+
+
+</ion-content>
+

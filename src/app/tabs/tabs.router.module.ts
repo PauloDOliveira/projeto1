@@ -7,6 +7,15 @@ const routes: Routes = [
     path: 'tabs',
     component: TabsPage,
     children: [
+      // {
+      //   path: 'home',
+      //   children: [
+      //     {
+      //       path: '',
+      //       loadChildren: './home/form-home/form-home.module#FormHomePageModule'
+      //     }
+      //   ]
+      // },
       {
         path: 'produtos',
         children: [

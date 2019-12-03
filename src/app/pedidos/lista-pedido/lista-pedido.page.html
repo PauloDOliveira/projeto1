@@ -15,21 +15,35 @@
         <h1>Sessão {{ pedido.numero }}</h1>
 
         <div margin-vertical>
-          <div><b>Valor à pagar: <br> </b> <app-valor [valor]="pedido.total" ></app-valor></div>
-          <div>
-            <b>{{ getFormaPagamentoNome(pedido.formPagamento) }}: </b>
-            <!-- <span *ngIf="pedido.formPagamento == 1">Troco para: {{ pedido.trocoPara || 0 | currency:'BRL' }}</span> -->
-            <span text-wrap *ngIf="pedido.formPagamento == 2"> <br> {{ pedido.tipoCartao }}</span>
+          <div><b>Valor à pagar: <br> </b>
+            <app-valor [valor]="pedido.total"></app-valor>
           </div>
+
           <div>
             <b>Data da solicitação: <br></b> {{ pedido.data }}
           </div>
+
           <div>
             <b>Status: <br> {{ getStatusNome(pedido.status) }}</b>
           </div>
+
+          <div>
+            <b>Data</b> {{ pedido.data }}
+          
+
+         
+            <b>Hora</b> {{ pedido.hora }}
+          </div>
+
+
+
+
+
         </div>
+
+
       </ion-label>
     </ion-item>
-    
+
   </ion-list>
 </ion-content>

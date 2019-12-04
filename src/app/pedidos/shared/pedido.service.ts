@@ -149,7 +149,8 @@ gerarPedido(pedido: any) {
   //carrinho
 
   getPedidoProdutosRef(){
-    const path = `${FirebasePath.PEDIDOS}${this.afAuth.auth.currentUser.uid}/${FirebasePath.PEDIDOS}`;
+    // const path = `${FirebasePath.PEDIDOS}${this.afAuth.auth.currentUser.uid}/${FirebasePath.PEDIDOS}`;
+    const path = `${FirebasePath.PEDIDOS}/${FirebasePath.PEDIDOS}`;
     return this.db.list(path);
   }
 

@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 // import { CarrinhoService } from './../shared/carrinho.service';
 import { ProdutosService } from './../../produtos/shared/produtos.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -20,6 +21,7 @@ export class FormItemPedidoPage implements OnInit {
     private router: Router, private produtosService: ProdutosService,
     // private carrinhoService: CarrinhoService,
     private pedidoService: PedidoService,
+    private afAuth: AngularFireAuth,
     private toast: ToastService) { }
 
   ngOnInit() {
@@ -83,16 +85,21 @@ export class FormItemPedidoPage implements OnInit {
     this.form.patchValue({ quantidade: quantidade, total: this.total });
   }
 
-  onSubmit(
-  ) {
-    if (this.form.valid) {
-      this.pedidoService.insert(this.form.value)
-      // .then(() =>{this.toast.show('Produto Adicionado com sucesso ao carrinho');
-      this.toast.show(' Pedido realizado. Aguarde a confirmação! <br> Em até 24hs iremos te para fazer o agendamento.<br> Observe em "Sessões marcadas" a sua situação');
-      this.router.navigate(['/tabs/produtos']);
-    }
+  onSubmit() {
+    this.afAuth.auth.onAuthStateChanged(user => {
+      if (!user) {
+        this.toast.show('Efetue o Login');
+        this.router.navigate(['/login'])
+      } else {
+        if (this.form.valid) {
+          this.pedidoService.insert(this.form.value)
+          // .then(() =>{this.toast.show('Produto Adicionado com sucesso ao carrinho');
+          this.toast.show(' Pedido realizado. <br> Aguarde a confirmação em "Agenda" <br> ');
+          this.router.navigate(['/tabs/home']);
+        }
+      }
+    })
+
   }
+
 }
-
-
-

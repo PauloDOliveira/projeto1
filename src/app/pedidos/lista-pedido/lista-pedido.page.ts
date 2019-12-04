@@ -37,6 +37,9 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from '../shared/pedido.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { ToastService } from 'projeto1/src/app/core/shared/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-pedido',
@@ -46,17 +49,31 @@ import { PedidoService } from '../shared/pedido.service';
 export class ListaPedidoPage implements OnInit {
   pedidos: Observable<any[]>
 
-  constructor(private pedidoService: PedidoService) { }
+  constructor(private pedidoService: PedidoService, 
+              private afAuth: AngularFireAuth, 
+              private toast: ToastService,
+              private router: Router,
+    ) { }
 
   ngOnInit() {
-    this.pedidos = this.pedidoService.getAllAbertos();
+    {
+      this.afAuth.auth.onAuthStateChanged(user => {
+        if (!user) {
+          this.toast.show('Efetue o Login');
+          this.router.navigate(['/login'])
+        } else {
+         this.pedidos = this.pedidoService.getAllAbertos();
+        }
+        })
+        
+    }
   }
 
   getStatusNome(status: number) {
     return this.pedidoService.getStatusNome(status);
   }
 
-  
+
   executarBusca($event: any) {
     if ($event.target.checked) {
       this.pedidos = this.pedidoService.getAll();

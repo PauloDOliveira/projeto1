@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../shared/usuarios.service';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-perfil',
@@ -8,21 +9,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
-user: any = {};
+  user: any = {};
 
-  constructor(private usuariosService: UsuariosService,
-              private router: Router) { }
+  constructor(private usuariosService: UsuariosService, 
+    private afAuth: AngularFireAuth, 
+    private router: Router) { }
 
   ngOnInit() {
-    this.user = this.usuariosService.getDadosUsuario();
-  }
+    this.afAuth.auth.onAuthStateChanged(user => {
+      if (!user) {
+        // this.toast.show('É necessário efetuar Login ou Criar uma conta !!!');
+        this.router.navigate(['/login'])
+      } else {
+        this.user = this.usuariosService.getDadosUsuario();
 
-  sair(){
-    this.usuariosService.logout()
-    .then( () => {
-      this.router.navigate(['/login']);
+      }
     })
   }
-  
+
+
+  sair() {
+    this.usuariosService.logout()
+      .then(() => {
+        this.router.navigate(['/login']);
+      })
+  }
+
 
 }

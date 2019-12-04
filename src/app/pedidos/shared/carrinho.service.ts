@@ -14,7 +14,7 @@ export class CarrinhoService {
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth ) { }
 
    getCarrinhoProdutosRef(){
-     const path = `${FirebasePath.CARRINHO}${this.afAuth.auth.currentUser.uid}/${FirebasePath.PRODUTOS}`;
+     const path = `${FirebasePath.CARRINHO}/${FirebasePath.PRODUTOS}`;
      return this.db.list(path);
    }
 

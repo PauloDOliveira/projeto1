@@ -38,8 +38,8 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from '../shared/pedido.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { ToastService } from 'projeto1/src/app/core/shared/toast.service';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/core/shared/toast.service';
 
 @Component({
   selector: 'app-lista-pedido',

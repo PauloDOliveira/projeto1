@@ -99,11 +99,11 @@ gerarPedido(pedido: any) {
       case PedidoService.STATUS.ENVIADO:
         return 'Aguardando confirmação';
       case PedidoService.STATUS.CONFIRMADO:
-        return 'Em preparação';
+        return 'Agendado';
       case PedidoService.STATUS.SAIU_PARA_ENTREGA:
-        return 'Saiu para entregar';
+        return 'Pedido negado';
       case PedidoService.STATUS.ENTREGUE:
-        return 'Entregue';
+        return 'Pedido Realizado';
     }
   }
 
@@ -150,7 +150,8 @@ gerarPedido(pedido: any) {
 
   getPedidoProdutosRef(){
     // const path = `${FirebasePath.PEDIDOS}${this.afAuth.auth.currentUser.uid}/${FirebasePath.PEDIDOS}`;
-    const path = `${FirebasePath.PEDIDOS}/${FirebasePath.PEDIDOS}`;
+    // const path = `${FirebasePath.PEDIDOS}/${FirebasePath.PEDIDOS}`;
+    const path = `${FirebasePath.PEDIDOS}/`;
     return this.db.list(path);
   }
 

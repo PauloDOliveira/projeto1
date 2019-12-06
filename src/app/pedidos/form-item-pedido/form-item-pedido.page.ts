@@ -55,8 +55,9 @@ export class FormItemPedidoPage implements OnInit {
       quantidade: [''],
       observacao: [''],
       total: [''],
-      data: [''],
-      hora: ['']
+      data: ['DD/MM/YYYY'],
+      hora: ['HH:mm'],
+      telefone: [],
     })
   }
 

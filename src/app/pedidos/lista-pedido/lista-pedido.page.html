@@ -12,29 +12,41 @@
     </ion-item>
     <ion-item *ngFor="let pedido of pedidos | async" [routerLink]="['/pedido/produtos', pedido.key]">
       <ion-label>
-        <h1>Sessão {{ pedido.numero }}</h1>
+        <div>
+          <h1>Serviço: {{ pedido.produtoNome }}</h1>
+        </div>
 
         <div margin-vertical>
-          <div><b>Valor à pagar: <br> </b>
-            <app-valor [valor]="pedido.total"></app-valor>
+          <div>
+            <b>Observação: {{ pedido.observacao }}</b>
           </div>
+          <br>
+
+          
+            <div>
+              <b>Telefone para contato: {{ pedido.telefone }}</b>
+            </div>
+            <br>
+          
+          <div>
+            <b>Data agendada: {{ pedido.data }}</b>
+          </div>
+          <br>
 
           <div>
-            <b>Data da solicitação: <br></b> {{ pedido.data }}
+            <b>Hora agendada: {{ pedido.hora }}</b>
           </div>
+          <br>
+
+          <div><b>Valor: </b>
+            <app-valor [valor]="pedido.total"></app-valor>
+          </div>
+          <br>
 
           <div>
             <b>Status: <br> {{ getStatusNome(pedido.status) }}</b>
           </div>
-
-          <div>
-            <b>Data</b> {{ pedido.data }}
-          
-
-         
-            <b>Hora</b> {{ pedido.hora }}
-          </div>
-
+          <br>
 
 
 
